@@ -2,6 +2,8 @@
     /* Colores */
  --color-fondo: rgb(253, 242, 195);
  --color-texto: black ;
- --color-titulo: red;
- --color-subtutilo:  ;
+ --color-titulo: rgb(53, 68, 204);
+ --color-de-error: red;
+ --color-correcto:green;
+ --color-btn: rgb(150, 199, 174);
 };
