@@ -10,3 +10,10 @@ export function iniciarSesion(email, password) {
   } 
     return null;
   }
+export function obtenerSesion(){
+    const texto = sessionStorage.getItem('sesion');
+    return texto ? JSON.parse(texto) : null;
+};
+export function cerrarSesion(){
+    sessionStorage.removeItem('sesion');
+}
