@@ -17,7 +17,7 @@ class FormUsuario extends HTMLElement {
         </div>
         <div class="elemento">
             <label for="correo"> Correo Electronico </label>
-            <input type="email" name="email " id="correo" required>
+            <input type="email" name="email" id="correo" required>
         </div>
         <div class="elemento">
             <label for="telefono"> Numero de Celular </label>
@@ -36,8 +36,22 @@ class FormUsuario extends HTMLElement {
         </div>
         <button type="submit">Guardar</button>
     </form>
-    `;
+    `
+    const formulario = this.shadowRoot.querySelector('form');
+
+    formulario.addEventListener('submit', (evento) => {
+        evento.preventDefault();
+
+        const datos = Object.fromEntries(new FormData(formulario));
+
+        this.dispatchEvent(new CustomEvent('usuario-guardado', {
+        detail: datos,
+        bubbles: true,
+        composed: true
+        }));
+    });
+    }    
   }
-}
+
 
 customElements.define('form-usuario', FormUsuario);
