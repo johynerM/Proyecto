@@ -50,6 +50,7 @@ class FormUsuario extends HTMLElement {
         composed: true
         }));
     });
+    formulario.reset();
     }    
   }
 
