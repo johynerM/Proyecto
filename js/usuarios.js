@@ -13,3 +13,7 @@ document.addEventListener('usuario-guardado', (e) => {
     usuarios.push(nuevo); //agrega el usuario a la lista 
     guardar('usuarios', usuarios); // actualiza la lista
 });
+
+const tabla = document.querySelector('tabla-usuarios');
+
+tabla.render(obtener('usuarios'))
