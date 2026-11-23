@@ -12,8 +12,16 @@ document.addEventListener('usuario-guardado', (e) => {
     }
     usuarios.push(nuevo); //agrega el usuario a la lista 
     guardar('usuarios', usuarios); // actualiza la lista
+    tabla.render(usuarios);
 });
 
 const tabla = document.querySelector('tabla-usuarios');
 
 tabla.render(obtener('usuarios'))
+
+document.addEventListener('usuario-eliminar', (e) => {
+    const usuarios = obtener('usuarios');
+    const filtrados = usuarios.filter(u => u.id !== e.detail);
+    guardar('usuarios', filtrados);
+    tabla.render(filtrados);
+});

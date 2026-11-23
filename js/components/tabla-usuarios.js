@@ -1,15 +1,20 @@
 class TablaUsuarios extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
-
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
     connectedCallback() {
-        this.render([]);
+      this.render([]);
+      this.shadowRoot.addEventListener('click', (e) => {
+        const id = e.target.dataset.id;
+        const accion = e.target.dataset.accion;
+        if (accion === 'eliminar') {
+          this.dispatchEvent(new CustomEvent('usuario-eliminar', { detail: id, bubbles: true, composed: true }));
+        }
+      });
     }
-
     render(usuarios) {
-        this.shadowRoot.innerHTML = `
+      this.shadowRoot.innerHTML = `
       <table>
         <thead>
           <tr>
@@ -29,14 +34,14 @@ class TablaUsuarios extends HTMLElement {
     <td>${u.email}</td>
     <td>${u.cargo}</td>
     <td>${u.telefono}</td>  
-    <td><button>Actualizar</button>
-    <button>Eliminar</button>  </td>
+    <td><button data-id="${u.id}" data-accion="actualizar">Actualizar</button>
+    <button data-id="${u.id}" data-accion="eliminar">Eliminar</button>  </td>
   </tr>
 `).join('')}
         </tbody>
       </table>
     `;
     }
-}
+  }
 
 customElements.define('tabla-usuarios', TablaUsuarios);
