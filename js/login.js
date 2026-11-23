@@ -1,6 +1,20 @@
 // llamamos la funcion iniciar sesion
 import { iniciarSesion } from './servicios/autentificaciones.js';
+import { obtener, guardar } from './servicios/almacenamiento.js';
 
+const user= obtener('usuarios');
+
+if (user.length === 0) {
+  guardar('usuarios', [{
+      "id": "admin1",
+      "identificacion": "1100223345",
+      "nombre": "Andres Gil",
+      "email": "andgil@acme.edu",
+      "telefono": "3156879502",
+      "cargo": "administrador",
+      "password": "4321"
+    }]);
+}
 
 const formulario = document.getElementById('form-login');
 const mensaje = document.getElementById('mensaje-error');

@@ -31,7 +31,7 @@ class FormUsuario extends HTMLElement {
         <div class="elemento">
             <label for="cargo" > Cargo </label>
             <select id="cargo" name="cargo" required>                
-                <option value="administrativo"> Administrativo </option> 
+                <option value="administrador"> Administrador </option> 
                 <option value="docente"> Docente </option> 
             </select>                
         </div>
