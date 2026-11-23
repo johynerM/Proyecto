@@ -1,10 +1,11 @@
+// el componente para crear el formulario de usuarios
 class FormUsuario extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' }); // con esto se crea la zona aislada del shadow DOM y permite entrar con
   }
 
-  connectedCallback() {
+  connectedCallback() { // se escribe el formulario dentro del shadow DOM
     this.shadowRoot.innerHTML = `
     <form>
         <div class="elemento">
@@ -37,22 +38,23 @@ class FormUsuario extends HTMLElement {
         <button type="submit">Guardar</button>
     </form>
     `
-    const formulario = this.shadowRoot.querySelector('form');
+    const formulario = this.shadowRoot.querySelector('form'); //dentro del shadow
 
     formulario.addEventListener('submit', (evento) => {
         evento.preventDefault();
 
-        const datos = Object.fromEntries(new FormData(formulario));
+        const datos = Object.fromEntries(new FormData(formulario)); //convierte los campos en objetos 
 
+        // si hay un usuario nuevo avisa y envia sus datos
         this.dispatchEvent(new CustomEvent('usuario-guardado', {
         detail: datos,
-        bubbles: true,
-        composed: true
+        bubbles: true, // sube por la pagina
+        composed: true //permite que salga de shadow
         }));
+        formulario.reset(); //limpia los datos despues de guardar
     });
-    formulario.reset();
     }    
   }
 
-
+// Registra la clase form-usuario
 customElements.define('form-usuario', FormUsuario);
