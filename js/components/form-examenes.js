@@ -23,7 +23,7 @@ class FormExamen extends HTMLElement {
         </div>
         <div class="elemento">
             <label for="aprobacion"> % Porcentaje de Aprobacion </label>
-            <input type="number" name="PorcentajeAprobacion" id="aprobacion" min="1" max="100" required>
+            <input type="number" name="porcentajeAprobacion" id="porcentajeAprobacion" min="1" max="100" required>
         </div>
         <div class="elemento">
             <label for="descripcion">Descripción</label>
@@ -58,7 +58,7 @@ class FormExamen extends HTMLElement {
     this.shadowRoot.querySelector('#codigo').value = examen.codigo;
     this.shadowRoot.querySelector('#titulo').value = examen.titulo;
     this.shadowRoot.querySelector('#tiempo').value = examen.tiempo;
-    this.shadowRoot.querySelector('#PorcentajeAprobacion').value = examen.PorcentajeAprobacion;
+    this.shadowRoot.querySelector('#porcentajeAprobacion').value = examen.porcentajeAprobacion;
     this.shadowRoot.querySelector('#descripcion').value = examen.descripcion;
     }
   }

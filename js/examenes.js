@@ -1,6 +1,5 @@
 // lee las funciones de obtener y guardar
 import { obtener, guardar } from './servicios/almacenamiento.js';
-import { obtenerSesion } from './servicios/autentificaciones.js';
 
 const tabla = document.querySelector('tabla-examenes');
 

@@ -36,8 +36,8 @@ class TablaExamen extends HTMLElement {
   <tr>
     <td>${ex.codigo}</td>
     <td>${ex.titulo}</td>
-    <td>${ex.tiempo} min</td>
-    <td>${ex.PorcentajeAprobacion}</td>
+    <td>'${ex.tiempo} min'</td>
+    <td>'${ex.porcentajeAprobacion}%'</td>
     <td><button data-id="${ex.id}" data-accion="actualizar">Actualizar</button>
     <button data-id="${ex.id}" data-accion="eliminar">Eliminar</button>  </td>
   </tr>
