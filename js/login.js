@@ -2,6 +2,7 @@
 import { iniciarSesion } from './servicios/autentificaciones.js';
 import { obtener, guardar } from './servicios/almacenamiento.js';
 
+// crea un administrador inicial por si no hay usuarios almacenados
 const user= obtener('usuarios');
 
 if (user.length === 0) {

@@ -59,6 +59,7 @@ class FormUsuario extends HTMLElement {
     });
         
     }    
+    // llenado del formulario editado
     cargar(usuario) {
     this.idEditando = usuario.id;
     this.shadowRoot.querySelector('#identificacion').value = usuario.identificacion;

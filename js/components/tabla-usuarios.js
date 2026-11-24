@@ -1,3 +1,4 @@
+// creacion de la clase tabla-usuario
 class TablaUsuarios extends HTMLElement {
   constructor() {
     super();
@@ -5,6 +6,7 @@ class TablaUsuarios extends HTMLElement {
   }
     connectedCallback() {
       this.render([]);
+      // listener de las acciones de los botones 
       this.shadowRoot.addEventListener('click', (e) => {
         const id = e.target.dataset.id;
         const accion = e.target.dataset.accion;
@@ -16,6 +18,7 @@ class TablaUsuarios extends HTMLElement {
         }
       });
     }
+    // creacion de la tabla de usuarios recibidos
     render(usuarios) {
       this.shadowRoot.innerHTML = `
       <table>
