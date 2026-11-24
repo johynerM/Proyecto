@@ -3,7 +3,8 @@ class FormUsuario extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' }); // con esto se crea la zona aislada del shadow DOM y permite entrar con
-  }
+    this.idEditando = null;
+}  
 
   connectedCallback() { // se escribe el formulario dentro del shadow DOM
     this.shadowRoot.innerHTML = `
@@ -44,7 +45,9 @@ class FormUsuario extends HTMLElement {
         evento.preventDefault();
 
         const datos = Object.fromEntries(new FormData(formulario)); //convierte los campos en objetos 
-
+        if (this.idEditando) {
+        datos.id = this.idEditando;
+        }
         // si hay un usuario nuevo avisa y envia sus datos
         this.dispatchEvent(new CustomEvent('usuario-guardado', {
         detail: datos,
@@ -52,8 +55,19 @@ class FormUsuario extends HTMLElement {
         composed: true //permite que salga de shadow
         }));
         formulario.reset(); //limpia los datos despues de guardar
+        this.idEditando = null;
     });
+        
     }    
+    cargar(usuario) {
+    this.idEditando = usuario.id;
+    this.shadowRoot.querySelector('#identificacion').value = usuario.identificacion;
+    this.shadowRoot.querySelector('#nombre').value = usuario.nombre;
+    this.shadowRoot.querySelector('#correo').value = usuario.email;
+    this.shadowRoot.querySelector('#telefono').value = usuario.telefono;
+    this.shadowRoot.querySelector('#password').value = usuario.password;
+    this.shadowRoot.querySelector('#cargo').value = usuario.cargo;
+}
   }
 
 // Registra la clase form-usuario

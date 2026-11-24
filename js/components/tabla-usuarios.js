@@ -8,6 +8,9 @@ class TablaUsuarios extends HTMLElement {
       this.shadowRoot.addEventListener('click', (e) => {
         const id = e.target.dataset.id;
         const accion = e.target.dataset.accion;
+        if (accion === 'actualizar') {
+          this.dispatchEvent(new CustomEvent('usuario-editar', { detail: id, bubbles: true, composed: true }));
+        }
         if (accion === 'eliminar') {
           this.dispatchEvent(new CustomEvent('usuario-eliminar', { detail: id, bubbles: true, composed: true }));
         }

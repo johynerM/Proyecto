@@ -4,16 +4,24 @@ import { obtenerSesion } from './servicios/autentificaciones.js';
 
 // cuando el formulario avisa que hay un usuario nuevo
 document.addEventListener('usuario-guardado', (e) => {
+    const datos = e.detail;
     const usuarios = obtener('usuarios');
-    const nuevo = { id: crypto.randomUUID(), ...e.detail };
     // revisa si ya alguien tiene ese correo o identificacion
-    const existe = usuarios.some(u => u.email === nuevo.email || u.identificacion === nuevo.identificacion);
+    const existe = usuarios.some(u => u.id !== datos.id && (u.email === datos.email || u.identificacion === datos.identificacion));
     if (existe) {
         return;
     }
-    usuarios.push(nuevo); //agrega el usuario a la lista 
+    if (datos.id) {
+    const actualizados = usuarios.map(u => u.id === datos.id ? { ...u, ...datos } : u);
+    guardar('usuarios', actualizados);
+    tabla.render(actualizados);
+    return;
+    }
+    const nuevo = { id: crypto.randomUUID(), ...datos };
+    usuarios.push(nuevo);//agrega el usuario a la lista 
     guardar('usuarios', usuarios); // actualiza la lista
     tabla.render(usuarios);
+    
 });
 
 const tabla = document.querySelector('tabla-usuarios');
@@ -35,4 +43,9 @@ document.addEventListener('usuario-eliminar', (e) => {
     guardar('usuarios', filtrados);
     tabla.render(filtrados);
     
+});
+
+document.addEventListener('usuario-editar', (e) => {
+    const usuario = obtener('usuarios').find(u => u.id === e.detail);
+    document.querySelector('form-usuario').cargar(usuario);
 });
