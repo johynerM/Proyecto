@@ -13,7 +13,7 @@ document.addEventListener('examen-guardado', (e) => {
     datos.porcentajeAprobacion = Number(datos.porcentajeAprobacion);
     const examenes = obtener('examenes');
     
-    // revisa si ya alguien tiene ese correo o identificacion
+    // revisa si ya existe un examen con ese código
     const existe = examenes.some(ex => ex.id !== datos.id && ex.codigo === datos.codigo);
         if (existe) {
         alert('Ya existe un examen con ese código');
@@ -21,7 +21,7 @@ document.addEventListener('examen-guardado', (e) => {
     }
     // reemplaza por los examenes editados 
     if (datos.id) {
-    const actualizados = examenes.map(u => ex.id === datos.id ? { ...u, ...datos } : u);
+    const actualizados = examenes.map(ex => ex.id === datos.id ? { ...ex, ...datos } : ex);
     guardar('examenes', actualizados);
     tabla.render(actualizados);
     return;
@@ -54,4 +54,9 @@ document.addEventListener('examen-eliminar', (e) => {
 document.addEventListener('examen-editar', (e) => {
     const examen = obtener('examenes').find(ex => ex.id === e.detail); //encuentra al examen
     document.querySelector('form-examen').cargar(examen); // carga el examen
+});
+
+document.addEventListener('examen-preguntas', (e) => {
+    const examen = obtener('examenes').find(ex => ex.id === e.detail);
+    document.querySelector('editor-preguntas').mostrar(examen);
 });

@@ -22,12 +22,12 @@ class FormExamen extends HTMLElement {
             <input type="number" name="tiempo" id="tiempo" min="1" required>
         </div>
         <div class="elemento">
-            <label for="aprobacion"> % Porcentaje de Aprobacion </label>
+            <label for="porcentajeAprobacion"> % Porcentaje de Aprobacion </label>
             <input type="number" name="porcentajeAprobacion" id="porcentajeAprobacion" min="1" max="100" required>
         </div>
         <div class="elemento">
             <label for="descripcion">Descripción</label>
-            <textarea name="descripcion" id="descripcion" required> </textarea>
+            <textarea name="descripcion" id="descripcion" required></textarea>
         </div>
         <button type="submit">Guardar</button>
     </form>

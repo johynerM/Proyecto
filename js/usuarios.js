@@ -15,6 +15,7 @@ document.addEventListener('usuario-guardado', (e) => {
     // revisa si ya alguien tiene ese correo o identificacion
     const existe = usuarios.some(u => u.id !== datos.id && (u.email === datos.email || u.identificacion === datos.identificacion));
     if (existe) {
+         alert('Ya existe un usuario con ese código');
         return;
     }
     // reemplaza por los usuarios editados 

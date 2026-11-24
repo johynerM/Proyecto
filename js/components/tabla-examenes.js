@@ -16,6 +16,9 @@ class TablaExamen extends HTMLElement {
         if (accion === 'eliminar') {
           this.dispatchEvent(new CustomEvent('examen-eliminar', { detail: id, bubbles: true, composed: true }));
         }
+        if (accion === 'preguntas') {
+          this.dispatchEvent(new CustomEvent('examen-preguntas', { detail: id, bubbles: true, composed: true }));
+        }
       });
     }
     // creacion de la tabla de examen recibidos
@@ -36,10 +39,11 @@ class TablaExamen extends HTMLElement {
   <tr>
     <td>${ex.codigo}</td>
     <td>${ex.titulo}</td>
-    <td>'${ex.tiempo} min'</td>
-    <td>'${ex.porcentajeAprobacion}%'</td>
+    <td>${ex.tiempo} min</td>
+    <td>${ex.porcentajeAprobacion}%</td>
     <td><button data-id="${ex.id}" data-accion="actualizar">Actualizar</button>
-    <button data-id="${ex.id}" data-accion="eliminar">Eliminar</button>  </td>
+    <button data-id="${ex.id}" data-accion="eliminar">Eliminar</button>
+    <button data-id="${ex.id}" y data-accion="preguntas"> Preguntas </button>  </td>
   </tr>
 `).join('')}
         </tbody>
