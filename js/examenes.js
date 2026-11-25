@@ -24,6 +24,10 @@ document.addEventListener('examen-guardado', (e) => {
         const actualizados = examenes.map(ex => ex.id === datos.id ? { ...ex, ...datos } : ex);
         guardar('examenes', actualizados);
         tabla.render(actualizados);
+        const editor = document.querySelector('editor-preguntas');
+        if (editor.examenActual && editor.examenActual.id === datos.id) {
+            editor.mostrar(actualizados.find(ex => ex.id === datos.id));
+        }
         return;
     }
     // genera los examenes nuevos 
@@ -47,7 +51,10 @@ document.addEventListener('examen-eliminar', (e) => {
     const filtrados = examenes.filter(ex => ex.id !== e.detail);
     guardar('examenes', filtrados);
     tabla.render(filtrados);
-
+    const editor = document.querySelector('editor-preguntas');
+    if (editor.examenActual && editor.examenActual.id === e.detail) {
+        editor.limpiar();
+    }
 });
 
 // avisa que se quiere editar un examen
@@ -75,21 +82,21 @@ document.addEventListener('pregunta-guardada', (e) => {
 });
 
 document.addEventListener('pregunta-eliminar', (e) => {
-  const { examenId, preguntaId } = e.detail;
+    const { examenId, preguntaId } = e.detail;
 
-  if (!confirm('¿Eliminar esta pregunta?')) {
-    return;
-  }
+    if (!confirm('¿Eliminar esta pregunta?')) {
+        return;
+    }
 
-  const examenes = obtener('examenes');
-  const actualizados = examenes.map(ex =>
-    ex.id === examenId
-      ? { ...ex, preguntas: ex.preguntas.filter(p => p.id !== preguntaId) }
-      : ex
-  );
+    const examenes = obtener('examenes');
+    const actualizados = examenes.map(ex =>
+        ex.id === examenId
+            ? { ...ex, preguntas: ex.preguntas.filter(p => p.id !== preguntaId) }
+            : ex
+    );
 
-  guardar('examenes', actualizados);
+    guardar('examenes', actualizados);
 
-  const examen = actualizados.find(ex => ex.id === examenId);
-  document.querySelector('editor-preguntas').mostrar(examen);
+    const examen = actualizados.find(ex => ex.id === examenId);
+    document.querySelector('editor-preguntas').mostrar(examen);
 });

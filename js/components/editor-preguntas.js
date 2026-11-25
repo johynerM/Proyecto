@@ -46,6 +46,10 @@ class EditorPreguntas extends HTMLElement {
             evento.target.reset();
         });
     }
+    limpiar() {
+        this.examenActual = null;
+        this.shadowRoot.innerHTML = '';
+    }
     mostrar(examen) {
         this.examenActual = examen;
         this.shadowRoot.innerHTML = `
