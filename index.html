@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examenes Disponibles</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examenes Disponibles</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1> Examenes Disponibles </h1>
-    <lista-examenes> </lista-examenes>
-    <script type="module" src="js/components/lista-examenes.js"> </script>
-    <script type="module" src="js/index.js"> </script>
+  <h1> Examenes Disponibles </h1>
+  <section id="paso-datos" hidden>
+    <h2>Tus datos</h2>
+    <form-estudiante></form-estudiante>
+  </section>
+  <lista-examenes> </lista-examenes>
+  <script type="module" src="js/components/lista-examenes.js"> </script>
+  <script type="module" src="js/components/form-estudiante.js"></script>
+  <script type="module" src="js/index.js"> </script>
 </body>
+
 </html>
