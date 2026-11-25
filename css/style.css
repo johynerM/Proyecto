@@ -1,9 +1,112 @@
-:root{
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Public+Sans:wght@400;500;600&display=swap');
+
+:root {
     /* Colores */
- --color-fondo: rgb(253, 242, 195);
- --color-texto: black ;
- --color-titulo: rgb(53, 68, 204);
- --color-de-error: red;
- --color-correcto:green;
- --color-btn: rgb(150, 199, 174);
+    --color-fondo: #F8FAFC;
+    --color-texto: #0F172A;
+    --color-titulo: #312E81;
+    --color-btn: #312E81;
+    --color-acento: #F43F5E;
+    --color-superficie: #FFFFFF;
+    --color-borde: #E2E8F0;
+    --color-de-error: #BE123C;
+    --color-correcto: #15803D;
+    /* Fuentes */
+    --fuente-titulo: 'Bricolage Grotesque', system-ui, sans-serif;
+    --fuente-texto: 'Public Sans', system-ui, sans-serif;
+    /* Forma */
+    --radio: 12px;
+    --sombra: 0 2px 8px rgba(49, 46, 129, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-texto);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 1rem;
+    line-height: 1.6;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fuente-titulo);
+    color: var(--color-titulo);
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+input,
+textarea,
+select,
+button {
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+input,
+textarea,
+select {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio);
+    background: var(--color-superficie);
+}
+
+button {
+    background-color: var(--color-btn);
+    color: #fff;
+    border: none;
+    border-radius: var(--radio);
+    padding: 0.7rem 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--sombra);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--color-titulo);
+    outline-offset: 2px;
+}
+
+form div {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+}
+
+#mensaje-error {
+    color: var(--color-de-error);
 }
