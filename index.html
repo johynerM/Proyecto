@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Examenes Disponibles</title>
     <link rel="stylesheet" href="css/style.css">
-    <script type="module">
-  import { obtener, guardar } from './js/servicios/almacenamiento.js';
-  window.obtener = obtener;
-  window.guardar = guardar;
-  import { iniciarSesion } from './js/servicios/autentificaciones.js';
-window.iniciarSesion = iniciarSesion;
-</script>
 </head>
 <body>
-    
+    <h1> Examenes Disponibles </h1>
+    <lista-examenes> </lista-examenes>
+    <script type="module" src="js/components/lista-examenes.js"> </script>
+    <script type="module" src="js/index.js"> </script>
 </body>
 </html>
