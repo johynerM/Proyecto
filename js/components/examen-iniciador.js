@@ -5,6 +5,7 @@ class ExamRunner extends HTMLElement {
   }
 
   iniciar(examen, estudiante) {
+    this.terminado = false;
     this.examen = examen;
     this.estudiante = estudiante;
 
@@ -44,7 +45,7 @@ class ExamRunner extends HTMLElement {
       if (restante === 0) {
         this.terminar();
       }
-      
+
     };
 
     actualizar();
@@ -52,20 +53,23 @@ class ExamRunner extends HTMLElement {
     this.shadowRoot.querySelector('form').addEventListener('submit', (e) => {
       e.preventDefault();
       this.terminar();
-    })};
-    terminar() {
-      clearInterval(this.intervalo);
+    })
+  };
+  terminar() {
+    if (this.terminado) return;
+    this.terminado = true;
+    clearInterval(this.intervalo);
 
-      const formulario = this.shadowRoot.querySelector('form');
-      const respuestas = Object.fromEntries(new FormData(formulario));
+    const formulario = this.shadowRoot.querySelector('form');
+    const respuestas = Object.fromEntries(new FormData(formulario));
 
-      this.dispatchEvent(new CustomEvent('examen-terminado', {
-        detail: { examen: this.examen, estudiante: this.estudiante, respuestas },
-        bubbles: true,
-        composed: true
-      }));
-    }    
+    this.dispatchEvent(new CustomEvent('examen-terminado', {
+      detail: { examen: this.examen, estudiante: this.estudiante, respuestas },
+      bubbles: true,
+      composed: true
+    }));
   }
+}
 
 
 customElements.define('exam-runner', ExamRunner);

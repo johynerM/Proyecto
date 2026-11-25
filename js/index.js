@@ -24,13 +24,16 @@ document.addEventListener('examen-terminado', (e) => {
 
   let aciertos = 0;
   examen.preguntas.forEach(p => {
-    const elegida = p.respuestas.find(r => r.id === respuestas[p.id]);
-    if (elegida && elegida.correcta) {
+    const elegida = respuestas[p.id]; // id de la respuesta que marcó el estudiante
+    const respuesta = p.respuestas.find(r => r.id === elegida);
+    if (respuesta && respuesta.correcta) {
       aciertos++;
     }
   });
 
-  const porcentaje = total === 0 ? 0 : Math.round(aciertos / total * 100);  const aprobado = porcentaje >= examen.porcentajeAprobacion;
+  const total = examen.preguntas.length;
+  const porcentaje = total === 0 ? 0 : Math.round((aciertos / total) * 100);
+  const aprobado = porcentaje >= examen.porcentajeAprobacion;
 
   const resultado = {
     id: crypto.randomUUID(),
@@ -38,11 +41,11 @@ document.addEventListener('examen-terminado', (e) => {
     nombre: estudiante.nombre,
     examenId: examen.id,
     titulo: examen.titulo,
-    respuestas: respuestas,
-    aciertos: aciertos,
-    total: examen.preguntas.length,
-    porcentaje: porcentaje,
-    aprobado: aprobado,
+    respuestas,
+    aciertos,
+    total,
+    porcentaje,
+    aprobado,
     fecha: new Date().toISOString()
   };
 
@@ -50,7 +53,8 @@ document.addEventListener('examen-terminado', (e) => {
   resultados.push(resultado);
   guardar('resultados', resultados);
 
-  document.getElementById('paso-examen').hidden = true;
-  document.getElementById('paso-resultado').hidden = false;
+
+  document.querySelector('#paso-examen').hidden = true;
+  document.querySelector('#paso-resultado').hidden = false;
   document.querySelector('resultado-examen').mostrar(resultado);
 });
