@@ -5,6 +5,15 @@ class EditorPreguntas extends HTMLElement {
         this.examenActual = null;
     }
     connectedCallback() {
+        this.shadowRoot.addEventListener('click', (e) => {
+            if (e.target.dataset.accion === 'eliminar-pregunta') {
+                this.dispatchEvent(new CustomEvent('pregunta-eliminar', {
+                    detail: { examenId: this.examenActual.id, preguntaId: e.target.dataset.id },
+                    bubbles: true,
+                    composed: true
+                }));
+            }
+        });
         this.shadowRoot.addEventListener('submit', (evento) => {
             evento.preventDefault();
             const datos = Object.fromEntries(new FormData(evento.target));
@@ -40,11 +49,25 @@ class EditorPreguntas extends HTMLElement {
     mostrar(examen) {
         this.examenActual = examen;
         this.shadowRoot.innerHTML = `
-      <section>
-        <h3> ${examen.titulo} </h3>
-        ${examen.preguntas.length === 0
+    <section>
+      <h3>${examen.titulo}</h3>
+
+      ${examen.preguntas.length === 0
                 ? `<p>Este examen todavía no tiene preguntas</p>`
-                : `<ul>${examen.preguntas.map(p => `<li> ${p.enunciado} </li>`).join('')}</ul>`}
+                : `<ul>
+            ${examen.preguntas.map(p => `
+              <li>
+                ${p.enunciado}
+                <button type="button" data-id="${p.id}" data-accion="eliminar-pregunta">Eliminar</button>
+                <ul>
+                  ${p.respuestas.map(r => `
+                    <li>${r.descripcion} ${r.correcta ? '✔' : ''}</li>
+                  `).join('')}
+                </ul>
+              </li>
+            `).join('')}
+          </ul>`
+            }
       <form>
         <h4>Agregar pregunta</h4>
 

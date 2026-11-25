@@ -73,3 +73,23 @@ document.addEventListener('pregunta-guardada', (e) => {
     const examen = actualizados.find(ex => ex.id === examenId);
     document.querySelector('editor-preguntas').mostrar(examen);
 });
+
+document.addEventListener('pregunta-eliminar', (e) => {
+  const { examenId, preguntaId } = e.detail;
+
+  if (!confirm('¿Eliminar esta pregunta?')) {
+    return;
+  }
+
+  const examenes = obtener('examenes');
+  const actualizados = examenes.map(ex =>
+    ex.id === examenId
+      ? { ...ex, preguntas: ex.preguntas.filter(p => p.id !== preguntaId) }
+      : ex
+  );
+
+  guardar('examenes', actualizados);
+
+  const examen = actualizados.find(ex => ex.id === examenId);
+  document.querySelector('editor-preguntas').mostrar(examen);
+});
