@@ -6,7 +6,6 @@ const lista = document.querySelector('lista-examenes');
 lista.render(obtener('examenes'));
 
 document.addEventListener('examen-elegido', (e) => {
-  console.log(e.detail);
   examenElegido = e.detail;
   lista.hidden = true;
   document.getElementById('paso-datos').hidden = false;
@@ -31,8 +30,7 @@ document.addEventListener('examen-terminado', (e) => {
     }
   });
 
-  const porcentaje = Math.round(aciertos / examen.preguntas.length * 100);
-  const aprobado = porcentaje >= examen.porcentajeAprobacion;
+  const porcentaje = total === 0 ? 0 : Math.round(aciertos / total * 100);  const aprobado = porcentaje >= examen.porcentajeAprobacion;
 
   const resultado = {
     id: crypto.randomUUID(),
