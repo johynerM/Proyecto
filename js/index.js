@@ -13,5 +13,13 @@ document.addEventListener('examen-elegido', (e) => {
 });
 
 document.addEventListener('estudiante-confirmado', (e) => {
-  console.log(examenElegido, e.detail);
+  const examen = obtener('examenes').find(ex => ex.id === examenElegido);
+
+  document.getElementById('paso-datos').hidden = true;   // oculta el formulario
+  document.getElementById('paso-examen').hidden = false; // muestra el examen
+  document.querySelector('exam-runner').iniciar(examen, e.detail);
+});
+
+document.addEventListener('examen-terminado', (e) => {
+  console.log(e.detail);
 });
