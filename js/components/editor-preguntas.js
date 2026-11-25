@@ -8,7 +8,6 @@ class EditorPreguntas extends HTMLElement {
         this.shadowRoot.addEventListener('submit', (evento) => {
             evento.preventDefault();
             const datos = Object.fromEntries(new FormData(evento.target));
-            console.log(datos);
             const respuestas = [];
             for (let i = 0; i < 4; i++) {
                 const texto = datos['respuesta' + i];
@@ -30,7 +29,12 @@ class EditorPreguntas extends HTMLElement {
                 enunciado: datos.enunciado,
                 respuestas: respuestas
             };
-            console.log(pregunta);
+            this.dispatchEvent(new CustomEvent('pregunta-guardada', {
+                detail: { examenId: this.examenActual.id, pregunta: pregunta },
+                bubbles: true,
+                composed: true
+            }));
+            evento.target.reset();
         });
     }
     mostrar(examen) {
