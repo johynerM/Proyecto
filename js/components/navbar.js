@@ -8,6 +8,7 @@ class Navbar extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.innerHTML = `
+    <link rel="stylesheet" href="css/componentes.css">
       <nav aria-label="Principal">
         <a href="usuarios.html">Usuarios</a>
         <a href="examenes.html">Exámenes</a>

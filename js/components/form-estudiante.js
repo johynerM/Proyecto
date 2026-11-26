@@ -6,7 +6,8 @@ class FormEstudiante extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.innerHTML = `
-      <form>
+    <link rel="stylesheet" href="css/componentes.css">  
+    <form class="form-datos">
         <div>
           <label for="identificacion">Identificación</label>
           <input type="text" id="identificacion" name="identificacion" required>

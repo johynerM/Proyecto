@@ -6,11 +6,12 @@ class ResultadoExamen extends HTMLElement {
 
   mostrar(r) {
     this.shadowRoot.innerHTML = `
-      <section aria-live="polite">
+      <link rel="stylesheet" href="css/componentes.css">
+      <section class="resultado ${r.aprobado ?'aprobado' : 'no-aprobado'} " aria-live="polite">
         <h2>Resultado: ${r.titulo}</h2>
         <p>${r.nombre} · ${r.identificacion}</p>
         <p>Aciertos: ${r.aciertos} de ${r.total}</p>
-        <p>Porcentaje: ${r.porcentaje}%</p>
+        <p class="porcentaje">Porcentaje: ${r.porcentaje}%</p>
         <p>${ r.aprobado ? 'Aprobado por chayanne' : 'Cagaste bien feo manito/a' }</p>
         <button type="button" id="volver">Volver al inicio</button>
       </section>

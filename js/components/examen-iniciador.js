@@ -17,7 +17,7 @@ class ExamRunner extends HTMLElement {
         <p>Tiempo restante: <strong id="reloj" role="timer">--:--</strong></p>
         </header>
 
-      <form>
+      <form class="form-examen">
         ${examen.preguntas.map((p, i) => `
           <fieldset>
             <legend>${i + 1}. ${p.enunciado}</legend>
