@@ -33,7 +33,7 @@ body {
 }
 
 main {
-    max-width: 900px;
+    max-width: 100%;
     margin: 0 auto;
 }
 
@@ -116,6 +116,26 @@ label {
 #paso-resultado {
     animation: aparecer .4s ease;
 }
+
+.login {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.login h1 {
+    text-align: center;
+}
+
+.login form {
+    display: grid;
+    gap: 1rem;
+}
+
+.login input {
+    width: 100%;
+}
+
+
 
 @keyframes aparecer {
     from {

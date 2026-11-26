@@ -141,11 +141,11 @@ fieldset div:has(input:checked) {
 }
 
 .form-datos {
-    max-width: 500px;
+    max-width: 100%;
     display: grid;
     gap: 1rem;
-    margin-bottom: 2rem;
     margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
 .form-datos label {
@@ -347,5 +347,16 @@ input[type="radio"]:focus-visible {
 
     .porcentaje {
         font-size: 1.5rem;
+    }
+}
+
+@media (min-width: 700px) {
+    .form-datos {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 1.5rem;
+    }
+
+    .form-datos button {
+        grid-column: 1/-1;
     }
 }

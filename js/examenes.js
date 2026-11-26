@@ -71,9 +71,14 @@ document.addEventListener('pregunta-guardada', (e) => {
     const { examenId, pregunta } = e.detail;
     const examenes = obtener('examenes');
 
-    const actualizados = examenes.map(ex =>
-        ex.id === examenId ? { ...ex, preguntas: [...ex.preguntas, pregunta] } : ex
-    );
+    const actualizados = examenes.map(ex => {
+    if (ex.id !== examenId) return ex;
+    const existe = ex.preguntas.some(p => p.id === pregunta.id);
+    const preguntas = existe
+        ? ex.preguntas.map(p => (p.id === pregunta.id ? pregunta : p))
+        : [...ex.preguntas, pregunta];
+    return { ...ex, preguntas };
+});
 
     guardar('examenes', actualizados);
 
