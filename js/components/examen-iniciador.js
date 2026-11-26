@@ -12,6 +12,10 @@ class ExamRunner extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <link rel="stylesheet" href="css/componentes.css">  
       <header>
+        <div class="barra">
+          <div id="progreso">
+          </div>
+        </div>
         <h2>${examen.titulo}</h2>
         <p>Preguntas: ${examen.preguntas.length} · Para aprobar: ${examen.porcentajeAprobacion}%</p>
         <p>Tiempo restante: <strong id="reloj" role="timer">--:--</strong></p>
@@ -36,12 +40,15 @@ class ExamRunner extends HTMLElement {
 
     const fin = Date.now() + examen.tiempo * 60000;
     const reloj = this.shadowRoot.querySelector('#reloj');
+    const progreso = this.shadowRoot.querySelector('#progreso');
+    const total = examen.tiempo * 60000;
 
     const actualizar = () => {
       const restante = Math.max(0, fin - Date.now());
       const min = Math.floor(restante / 60000);
       const seg = Math.floor((restante % 60000) / 1000);
       reloj.textContent = `${String(min).padStart(2, '0')}:${String(seg).padStart(2, '0')}`;
+      progreso.style.width = (restante / total * 100) + '%';
       reloj.classList.toggle('urgente', restante <= 60000);
 
       if (restante === 0) {

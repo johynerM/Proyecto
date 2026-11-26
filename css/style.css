@@ -110,3 +110,21 @@ label {
 #mensaje-error {
     color: var(--color-de-error);
 }
+
+#paso-datos,
+#paso-examen,
+#paso-resultado {
+    animation: aparecer .4s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

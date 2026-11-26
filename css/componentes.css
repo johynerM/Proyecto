@@ -2,7 +2,9 @@
     box-sizing: border-box;
 }
 
-h2,h3,h4 {
+h2,
+h3,
+h4 {
     font-family: var(--fuente-titulo);
     color: var(--color-titulo);
 }
@@ -45,6 +47,11 @@ button {
     padding: .6rem 1rem;
     font-weight: 600;
     cursor: pointer;
+    transition: background .2s, transform .1s;
+}
+
+button:active {
+    transform: scale(0.97);
 }
 
 button:hover {
@@ -138,6 +145,7 @@ fieldset div:has(input:checked) {
     display: grid;
     gap: 1rem;
     margin-bottom: 2rem;
+    margin: 0 auto;
 }
 
 .form-datos label {
@@ -288,4 +296,56 @@ nav button {
 .form-datos input[type="radio"] {
     width: auto;
     padding: 0;
+}
+
+select:focus-visible,
+textarea:focus-visible,
+input[type="radio"]:focus-visible {
+    outline: 3px solid var(--color-acento);
+    outline-offset: 2px;
+}
+
+.barra {
+    height: 8px;
+    background: var(--color-borde);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+#progreso {
+    height: 100%;
+    background: var(--color-btn);
+    transition: width 1s linear;
+}
+
+@media (max-width: 600px) {
+    nav {
+        flex-wrap: wrap;
+    }
+
+    .tabla th,
+    .tabla td {
+        padding: .5rem;
+        font-size: .9rem;
+    }
+
+    .acciones {
+        flex-wrap: wrap;
+    }
+
+    #reloj {
+        font-size: 1.5rem;
+    }
+
+    .form-examen>button {
+        width: 100%;
+    }
+
+    .resultado {
+        padding: 1rem;
+    }
+
+    .porcentaje {
+        font-size: 1.5rem;
+    }
 }
