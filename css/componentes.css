@@ -128,11 +128,12 @@ fieldset div:has(input:checked) {     /* pseudo-clase de "marcado" */
     max-width: 500px; 
     display: grid; 
     gap: 1rem; 
+    margin-bottom: 2rem;
 }
 .form-datos label { 
     display:block; 
     font-weight: 600; 
-    margin-bottom: .25rem; 
+    margin-bottom: 1.5rem; 
 }
 .form-datos input { 
     width: 100%; 
@@ -145,8 +146,15 @@ fieldset div:has(input:checked) {     /* pseudo-clase de "marcado" */
     outline-offset: 2px; 
 }
 
+.form-datos select { 
+    width: 100%; 
+    padding: 1rem; 
+    border: 1px solid var(--color-superficie); 
+    border-radius: var(--radio); 
+}
+
 .resultado {
-  background: var(--color-superficie);
+  background: var(--color-borde);
   border: 1px solid var(--color-borde);
   border-radius: var(--radio);
   box-shadow: var(--sombra);
@@ -185,4 +193,40 @@ nav a:focus-visible {
 nav button { 
     margin-left: auto; 
     background: var(--color-acento);
+}
+
+.tabla { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: var(--color-superficie); 
+}
+.tabla th { 
+    background: var(--color-btn); 
+    color: #fff; 
+    text-align: left; 
+    padding: .75rem; 
+}
+.tabla td { 
+    padding: .75rem; 
+    border-bottom: 1px solid var(--color-borde); 
+}
+.tabla tr:hover td { 
+    background: #EEF2FF; 
+}
+.btn-eliminar { 
+    background: var(--color-error); 
+}
+.tabla-scroll { 
+    overflow-x: auto; 
+}
+.acciones { 
+    display: flex; 
+    gap: .5rem; 
+}
+.form-datos textarea { 
+    width: 100%; 
+    padding: 1rem; 
+    border: 1px solid var(--color-borde); 
+    border-radius: var(--radio); 
+    font-family: inherit;
 }

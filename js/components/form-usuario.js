@@ -8,7 +8,8 @@ class FormUsuario extends HTMLElement {
 
   connectedCallback() { // se escribe el formulario dentro del shadow DOM
     this.shadowRoot.innerHTML = `
-    <form>
+    <link rel="stylesheet" href="css/componentes.css">
+    <form class="form-datos">
         <div class="elemento">
             <label for="identificacion"> Identificacion </label>
             <input type="text" name="identificacion" id="identificacion" required>

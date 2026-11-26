@@ -21,7 +21,9 @@ class TablaUsuarios extends HTMLElement {
     // creacion de la tabla de usuarios recibidos
     render(usuarios) {
       this.shadowRoot.innerHTML = `
-      <table>
+      <link rel="stylesheet" href="css/componentes.css">
+      <div class="tabla-scroll">
+      <table class="tabla">
         <thead>
           <tr>
             <th>identificacion</th>
@@ -40,12 +42,18 @@ class TablaUsuarios extends HTMLElement {
     <td>${u.email}</td>
     <td>${u.cargo}</td>
     <td>${u.telefono}</td>  
-    <td><button data-id="${u.id}" data-accion="actualizar">Actualizar</button>
-    <button data-id="${u.id}" data-accion="eliminar">Eliminar</button>  </td>
+    <td>
+      <div class="acciones">
+        <button class="btn-editar" data-id="${u.id}" data-accion="actualizar">Actualizar</button>
+        <button class="btn-eliminar" data-id="${u.id}" data-accion="eliminar">Eliminar</button>  
+      </div>
+    </td>
   </tr>
+  
 `).join('')}
         </tbody>
       </table>
+      </div>
     `;
     }
   }

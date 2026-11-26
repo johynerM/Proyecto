@@ -24,7 +24,9 @@ class TablaExamen extends HTMLElement {
     // creacion de la tabla de examen recibidos
     render(examen) {
       this.shadowRoot.innerHTML = `
-      <table>
+      <link rel="stylesheet" href="css/componentes.css">
+      <div class="tabla-scroll">
+      <table class="tabla">
         <thead>
           <tr>
             <th>Codigo</th>
@@ -41,13 +43,16 @@ class TablaExamen extends HTMLElement {
     <td>${ex.titulo}</td>
     <td>${ex.tiempo} min</td>
     <td>${ex.porcentajeAprobacion}%</td>
-    <td><button data-id="${ex.id}" data-accion="actualizar">Actualizar</button>
-    <button data-id="${ex.id}" data-accion="eliminar">Eliminar</button>
-    <button data-id="${ex.id}" y data-accion="preguntas"> Preguntas </button>  </td>
+    <td>
+      <button class="btn-editar" data-id="${ex.id}" data-accion="actualizar">Actualizar</button>
+      <button class="btn-eliminar" data-id="${ex.id}" data-accion="eliminar">Eliminar</button>
+      <button data-id="${ex.id}" y data-accion="preguntas"> Preguntas </button>  
+    </td>
   </tr>
 `).join('')}
         </tbody>
       </table>
+    </div>
     `;
     }
   }
