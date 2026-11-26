@@ -10,3 +10,63 @@ h2, h3 {
 button, input, select, textarea { 
     font-family: inherit; 
 }
+.tarjeta {
+  background: var(--color-superficie);          
+  border: 1px solid var(--color-borde);    
+  border-radius: var(--radio);       
+  box-shadow: var(--sombra);          
+  padding: 1rem;
+transition: transform .2s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+}
+
+
+.lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+  gap: 1rem;
+  list-style: none;
+  padding: 1rem;
+  margin: 0;
+}
+
+button {
+  background: var(--color-btn);
+  color: #fff;
+  border: none;
+  border-radius: var(--radio);
+  padding: .6rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover { opacity: .9; }
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--color-acento);
+  outline-offset: 2px;
+}
+
+#reloj {
+  font-family: var(--fuente-titulo);
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-titulo);
+}
+
+#reloj.urgente {
+  color: var(--color-error);
+  animation: parpadeo 1s ease-in-out infinite;
+}
+
+@keyframes parpadeo {
+  50% { opacity: 0.4; }
+}

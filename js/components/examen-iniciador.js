@@ -10,6 +10,7 @@ class ExamRunner extends HTMLElement {
     this.estudiante = estudiante;
 
     this.shadowRoot.innerHTML = `
+      <link rel="stylesheet" href="css/componentes.css">  
       <header>
         <h2>${examen.titulo}</h2>
         <p>Preguntas: ${examen.preguntas.length} · Para aprobar: ${examen.porcentajeAprobacion}%</p>
@@ -41,6 +42,7 @@ class ExamRunner extends HTMLElement {
       const min = Math.floor(restante / 60000);
       const seg = Math.floor((restante % 60000) / 1000);
       reloj.textContent = `${String(min).padStart(2, '0')}:${String(seg).padStart(2, '0')}`;
+      reloj.classList.toggle('urgente', restante <= 60000);
 
       if (restante === 0) {
         this.terminar();

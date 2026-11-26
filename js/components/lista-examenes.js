@@ -21,14 +21,15 @@ class ListaExamenes extends HTMLElement {
 
   render(examenes) {
     this.shadowRoot.innerHTML = `
-      <ul>
-        ${ examenes.map(ex => `
-          <li>
+    <link rel="stylesheet" href="css/componentes.css" >
+    <ul class="lista">
+        ${examenes.map(ex => `
+          <li class="tarjeta">
             <h2>${ex.titulo}</h2>
             <p>${ex.tiempo} min · Aprobación: ${ex.porcentajeAprobacion}%</p>
             <button type="button" data-id="${ex.id}">Presentar</button>
           </li>
-        `).join('') }
+        `).join('')}
       </ul>
     `;
   }
