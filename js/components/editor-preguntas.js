@@ -53,26 +53,27 @@ class EditorPreguntas extends HTMLElement {
     mostrar(examen) {
         this.examenActual = examen;
         this.shadowRoot.innerHTML = `
+    <link rel="stylesheet" href="css/componentes.css">
     <section>
       <h3>${examen.titulo}</h3>
 
       ${examen.preguntas.length === 0
                 ? `<p>Este examen todavía no tiene preguntas</p>`
-                : `<ul>
+                : `<ul class="lista-preguntas">
             ${examen.preguntas.map(p => `
               <li>
                 ${p.enunciado}
-                <button type="button" data-id="${p.id}" data-accion="eliminar-pregunta">Eliminar</button>
-                <ul>
+                <button class="btn-eliminar" type="button" data-id="${p.id}" data-accion="eliminar-pregunta">Eliminar</button>
+                <ul class="lista-respuestas">
                   ${p.respuestas.map(r => `
-                    <li>${r.descripcion} ${r.correcta ? '✔' : ''}</li>
+                    <li class="${r.correcta ? 'correcta' : ''}">${r.descripcion} ${r.correcta ? '✔' : ''}</li>
                   `).join('')}
                 </ul>
               </li>
             `).join('')}
           </ul>`
             }
-      <form>
+      <form class="form-datos">
         <h4>Agregar pregunta</h4>
 
         <label for="enunciado">Pregunta</label>
